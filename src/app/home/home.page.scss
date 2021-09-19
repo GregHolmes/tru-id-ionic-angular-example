@@ -25,3 +25,23 @@
 #container a {
   text-decoration: none;
 }
+
+.center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.margin-top {
+  margin-top: 15px;
+}
+.input {
+  width: 30% !important;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 10px 30px;
+  outline: none;
+}
+.alert-style .alert-wrapper {
+  background: #e5e5e5;
+}

@@ -1,20 +1,27 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title className="center">
+      tru.ID Ionic / Capacitor Plugin
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content fullscreen>
+  <ion-item className="center margin-top">
+    <ion-input
+      value={{phoneNumber}}
+      className="input"
+      autocapitalize="off"
+      type="tel"
+      placeholder="Phone Number ex. +4433234454"
+      [(ngModel)]="phoneNumber"
+    ></ion-input>
+  </ion-item>
+  <ion-button
+    expand="block"
+    color="success"
+    shape="round"
+    (click)="submitHandler()"
+  >
+    Submit
+  </ion-button>
 </ion-content>
