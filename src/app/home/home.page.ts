@@ -53,7 +53,7 @@ export class HomePage {
         networkId: string;
         networkName: string;
         countryCode: string;
-        products?: { productId: string; productType: string }[];
+        products?: { product_id: string; productType: string }[];
         error?: {
           type: string;
           title: string;
@@ -61,6 +61,8 @@ export class HomePage {
           detail: string;
         };
       } = JSON.parse(reachabilityDetails.result);
+
+      console.log(info);
 
       if (info.error?.status === 400) {
         this.showAlert({
@@ -81,10 +83,10 @@ export class HomePage {
       if (info.error?.status !== 412) {
         isPhoneCheckSupported = false;
 
-        for (const { productType } of info.products) {
-          console.log('supported products are', productType);
+        for (const { product_id } of info.products) {
+          console.log('supported products are', product_id);
 
-          if (productType === 'PhoneCheck') {
+          if (product_id === 'PCK') {
             isPhoneCheckSupported = true;
           }
         }
@@ -158,7 +160,7 @@ export class HomePage {
       if (phoneCheckResult.match) {
         this.showAlert({
           cssClass: 'alert-style',
-          header: 'Something went wrong',
+          header: 'Success!',
           message: 'PhoneCheck Verification successful.',
           buttons: ['Cancel', { text: 'Got It!' }]
         });
