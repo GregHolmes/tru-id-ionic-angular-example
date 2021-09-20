@@ -53,7 +53,7 @@ export class HomePage {
         networkId: string;
         networkName: string;
         countryCode: string;
-        products?: { product_id: string; productType: string }[];
+        products?: { productId: string; productType: string }[];
         error?: {
           type: string;
           title: string;
@@ -83,10 +83,10 @@ export class HomePage {
       if (info.error?.status !== 412) {
         isPhoneCheckSupported = false;
 
-        for (const { product_id } of info.products) {
-          console.log('supported products are', product_id);
+        for (const { productId } of info.products) {
+          console.log('supported products are', productId);
 
-          if (product_id === 'PCK') {
+          if (productId === 'PCK') {
             isPhoneCheckSupported = true;
           }
         }
