@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 
 import { TruPluginIonicCapacitor } from '@tru_id/tru-plugin-ionic-capacitor';
 
@@ -18,14 +18,15 @@ export class HomePage {
   baseUrl: string;
 
   constructor(
-    public alertController: AlertController
+    public alertController: AlertController,
+    public platform: Platform
   ) {
     this.phoneNumber = '';
     this.checked = '';
     this.match = '';
     this.details = '';
     this.loading = false;
-    this.baseUrl = '<YOUR_NGROK_OR_LOCAL_TUNNEL_URL>';
+    this.baseUrl = '<YOUR_NGROK>';
   }
 
   // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
@@ -53,7 +54,8 @@ export class HomePage {
         networkId: string;
         networkName: string;
         countryCode: string;
-        products?: { productId: string; productType: string }[];
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        products?: { product_id: string; product_name: string; productId: string; productType: string }[];
         error?: {
           type: string;
           title: string;
@@ -83,11 +85,30 @@ export class HomePage {
       if (info.error?.status !== 412) {
         isPhoneCheckSupported = false;
 
-        for (const { productId } of info.products) {
-          console.log('supported products are', productId);
+        console.log(this.platform.platforms());
 
-          if (productId === 'PCK') {
-            isPhoneCheckSupported = true;
+        if (this.platform.is('ios')) {
+          console.log('ios');
+
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          for (const { product_id } of info.products) {
+            console.log('supported products are', product_id);
+
+            if (product_id === 'PCK') {
+              isPhoneCheckSupported = true;
+            }
+          }
+        } else if (this.platform.is('android')) {
+          console.log('Android');
+          console.log(info.products);
+
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          for (const { productId } of info.products) {
+            console.log('supported products are', productId);
+
+            if (productId === 'PCK') {
+              isPhoneCheckSupported = true;
+            }
           }
         }
       } else {

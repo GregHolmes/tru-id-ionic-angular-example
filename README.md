@@ -39,17 +39,16 @@ Read more about Sandbox mode [here](https://developer.tru.id/docs/sandbox)
 
 ## Starting the project
 
-First, start the dev server by running in the root directory,
+First, start the dev server, and starting an ngrok tunnel by running the commands below in the root directory,
 
 ```bash
-tru server -t
+tru server
+ngrok http 8080
 ```
-
-> **Note** if you would prefer to use ngrok instead of LocalTunnel, remove the `-t` from the above command, and in another Terminal run the command `ngrok http 8080`.
 
 This will start a local development server and create a tunnel so that your phone application can communicate with the API.
 
-With the `LocalTunnel` URL (or ngrok URL) provided, copy this value and update the `this.baseUrl` value found within `src/app/home/home.page.ts`.
+With the `ngrok` URL provided, copy this value and update the `this.baseUrl` value found within `src/app/home/home.page.ts`.
 
 To start the Ionic app , first install dependencies via:
 
